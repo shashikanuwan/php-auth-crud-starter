@@ -1,10 +1,5 @@
 {
     "name": "shashika/php",
-    "autoload": {
-        "psr-4": {
-            "Shashika\\Php\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Shashika Nuwan",
@@ -13,5 +8,10 @@
     ],
     "require": {
         "illuminate/support": "^11.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
     }
 }
