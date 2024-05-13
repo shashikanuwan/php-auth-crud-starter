@@ -1,0 +1,17 @@
+{
+    "name": "shashika/php",
+    "autoload": {
+        "psr-4": {
+            "Shashika\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shashika Nuwan",
+            "email": "info@shashikanuwan.me"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^11.7"
+    }
+}
