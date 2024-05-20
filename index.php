@@ -1,5 +1,4 @@
 <?php
 
-require("vendor/autoload.php");
-
-require("resources/views/welcome.php");
+require "function.php";
+require "router.php";

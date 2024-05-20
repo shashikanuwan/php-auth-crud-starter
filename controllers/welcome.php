@@ -1,3 +1,3 @@
 <?php
 
-require "../resources/views/welcome.php";
+require "views/welcome.php";
