@@ -12,6 +12,10 @@
                         class="nav-link <?= urlIs('/') ? 'active' : ''?>">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/notes"
+                       class="nav-link <?= urlIs('/notes') ? 'active' : ''?>">Notes</a>
+                </li>
+                <li class="nav-item">
                     <a href="/about"
                         class="nav-link <?= urlIs('/about') ? 'active' : ''?>">About</a>
                 </li>

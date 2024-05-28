@@ -3,9 +3,11 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = [
-    '/' => 'controllers/welcome.php',
-    '/about' => 'controllers/about.php',
-    '/contact' => 'controllers/contact.php',
+    '/' => 'controllers/welcomeController.php',
+    '/notes' => 'controllers/NotesController.php',
+    '/note' => 'controllers/NoteController.php',
+    '/about' => 'controllers/AboutController.php',
+    '/contact' => 'controllers/ContactController.php',
 ];
 
 function abort($code = 404)
