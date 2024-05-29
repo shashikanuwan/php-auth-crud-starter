@@ -23,5 +23,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-include 'views/layouts/app.php';
+require base_path('views/layouts/app.php');
 ?>

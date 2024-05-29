@@ -1,14 +1,14 @@
 <?php
 
-require 'Validator.php';
+require base_path('Core/Validator.php');
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errors = [];
+$errors = [];
 
-    if (! Validator::string($_POST['name'], 1, 255)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Validator::string($_POST['name'], 1, 255)) {
         $errors['name'] = 'The name field is required.';
     }
 
@@ -20,4 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'views/notes/create.view.php';
+view('notes/create.view.php', [
+    'errors' => $errors
+]);
