@@ -1,17 +1,15 @@
 <?php
 
-$config = require "config.php";
+require 'Validator.php';
+
+$config = require 'config.php';
 $db = new Database($config['database']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
-    if (strlen($_POST['name']) === 0) {
+    if (! Validator::string($_POST['name'], 1, 255)) {
         $errors['name'] = 'The name field is required.';
-    }
-
-    if (strlen($_POST['name']) > 255) {
-        $errors['name'] = 'The name may not be greater than 255 characters.';
     }
 
     if (empty($errors)) {
