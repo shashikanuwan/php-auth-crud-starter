@@ -9,7 +9,14 @@ function dd($value)
     die();
 }
 
-function urlIs($value)
+function urlIs($value): bool
 {
     return $_SERVER['REQUEST_URI'] === $value;
+}
+
+function authorize($condition, $status = 403)
+{
+    if (! $condition){
+        abort($status);
+    }
 }
