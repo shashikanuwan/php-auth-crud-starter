@@ -11,6 +11,12 @@ ob_start();
         <p>
             <?= $note['name'] ?>
         </p>
+
+        <form method="POST">
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+            <button class="text-danger">Delete</button>
+        </form>
+
     </div>
 
 <?php
