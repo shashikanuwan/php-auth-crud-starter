@@ -15,5 +15,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-include 'layouts/app.php';
+include 'views/layouts/app.php';
 ?>
