@@ -1,14 +1,15 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$routes = require('routes.php');
 
-$routes = [
-    '/' => 'controllers/welcomeController.php',
-    '/notes' => 'controllers/NotesController.php',
-    '/note' => 'controllers/NoteController.php',
-    '/about' => 'controllers/AboutController.php',
-    '/contact' => 'controllers/ContactController.php',
-];
+function routeToController($uri, $routes)
+{
+    if (array_key_exists($uri, $routes)) {
+        require $routes[$uri];
+    } else {
+        abort();
+    }
+}
 
 function abort($code = 404)
 {
@@ -19,14 +20,7 @@ function abort($code = 404)
     die();
 }
 
-function routeToController($uri, $routes)
-{
-    if (array_key_exists($uri, $routes)) {
-        require $routes[$uri];
-    } else {
-        abort();
-    }
-}
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
 

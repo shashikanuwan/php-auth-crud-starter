@@ -13,7 +13,7 @@
 <body>
     <?php include 'navigation.php'; ?>
 
-    <main>
+    <main class="container">
         <?php echo $content; ?>
     </main>
     

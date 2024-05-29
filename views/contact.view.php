@@ -3,7 +3,8 @@ $title = "Contact";
 ob_start();
 ?>
 
-<h2>Welcome to My Website</h2>
+<h2>Contact Us</h2>
+
 <p>This is the contact page content.</p>
 
 <?php
