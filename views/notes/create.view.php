@@ -6,7 +6,7 @@ ob_start();
     <h2>Create Note</h2>
 
     <div class="mx-auto max-w-7-xl py-6 sm:px-6 lg:px-8">
-        <form action="" method="POST">
+        <form method="POST" action="/notes">
             <div class="mb-3">
                 <label for="name" class="form-label">Body</label>
                 <textarea name="name" class="form-control"><?= $_POST['name'] ?? '' ?></textarea>
