@@ -23,6 +23,19 @@ function urlIs($value): bool
 }
 
 /**
+ * @param int $code
+ * @return void
+ */
+function abort(int $code = 404)
+{
+    http_response_code($code);
+
+    require view("partials/{$code}.php");
+
+    die();
+}
+
+/**
  * @param $condition
  * @param int $status
  * @return void
