@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     authorize($note['user_id'] === $currentUserId);
 
-    $note = $db->query('DELETE * FROM notes WHERE id = :id', [
+    $db->query('DELETE FROM notes WHERE id = :id', [
         'id' => $_GET['id']
     ]);
 
