@@ -3,8 +3,6 @@
 use Core\App;
 use Core\Validator;
 
-require base_path('Core/Validator.php');
-
 $db = App::resolve(Core\Database::class);
 
 $errors = [];

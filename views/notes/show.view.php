@@ -8,8 +8,13 @@ ob_start();
         <p>
             <a href="/notes">Go back</a>
         </p>
+
         <p>
             <?= $note['name'] ?>
+        </p>
+
+        <p>
+            <a href="/note/edit?id=<?= $note['id'] ?>">Edit</a>
         </p>
 
         <form method="POST">
