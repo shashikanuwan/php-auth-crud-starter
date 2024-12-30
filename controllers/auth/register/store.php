@@ -41,10 +41,7 @@ if ($user) {
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-    $_SESSION['user'] = [
-        'name' => $name,
-        'email' => $email,
-    ];
+    login($user);
 
     header('Location: /');
     exit();

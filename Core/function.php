@@ -1,10 +1,9 @@
 <?php
 
-/**
- * @param $value
- * @return void
- */
-function dd($value)
+
+use JetBrains\PhpStorm\NoReturn;
+
+#[NoReturn] function dd($value): void
 {
     echo "<pre>";
     var_dump($value);
@@ -13,20 +12,12 @@ function dd($value)
     die();
 }
 
-/**
- * @param $value
- * @return bool
- */
 function urlIs($value): bool
 {
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-/**
- * @param int $code
- * @return void
- */
-function abort(int $code = 404)
+#[NoReturn] function abort(int $code = 404): void
 {
     http_response_code($code);
 
@@ -35,35 +26,40 @@ function abort(int $code = 404)
     die();
 }
 
-/**
- * @param $condition
- * @param int $status
- * @return void
- */
-function authorize($condition, int $status = 403)
+function authorize($condition, int $status = 403): void
 {
     if (!$condition) {
         abort($status);
     }
 }
 
-/**
- * @param $path
- * @return string
- */
 function base_path($path): string
 {
-    return BASE_PATH . $path;
+    return BASE_PATH.$path;
 }
 
-/**
- * @param $path
- * @param array $attributes
- * @return void
- */
-function view($path, array $attributes = [])
+function view($path, array $attributes = []): void
 {
     extract($attributes);
 
-    require base_path('views/' . $path);
+    require base_path('views/'.$path);
+}
+
+function login($user): void
+{
+    $_SESSION['user'] = [
+        'email' => $user['email']
+    ];
+
+    session_regenerate_id(true);
+}
+
+function logout(): void
+{
+    $_SESSION = [];
+    session_destroy();
+
+    $params = session_get_cookie_params();
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'],
+        $params['httponly']);
 }

@@ -24,12 +24,19 @@
                        class="nav-link <?= urlIs('/contact') ? 'active' : '' ?>">Contact</a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ms-auto">
-                <?php if ($_SESSION['user'] ?? false) : ?>
+                <?php
+                if ($_SESSION['user'] ?? false) : ?>
                     <li class="nav-item">
-                        <p class="nav-link mb-0">You are logged in</p>
+                        <form method="POST" action="/logout">
+                            <input type="hidden" name="_method" value="DELETE"/>
+
+                            <button class="btn btn-danger btn-sm">Log Out</button>
+                        </form>
                     </li>
-                <?php else : ?>
+                <?php
+                else : ?>
                     <li class="nav-item">
                         <a href="/login"
                            class="nav-link <?= urlIs('/login') ? 'active' : '' ?>">Login</a>
@@ -38,7 +45,8 @@
                         <a href="/register"
                            class="nav-link <?= urlIs('/register') ? 'active' : '' ?>">Register</a>
                     </li>
-                <?php endif; ?>
+                <?php
+                endif; ?>
             </ul>
         </div>
     </div>

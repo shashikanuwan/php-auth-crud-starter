@@ -6,7 +6,7 @@ ob_start();
 <h2>Login</h2>
 
 <div class="mx-auto max-w-7-xl py-6 sm:px-6 lg:px-8">
-    <form method="POST" action="/register">
+    <form method="POST" action="/login">
 
         <div class="row mb-3">
             <div class="col">
