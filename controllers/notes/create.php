@@ -1,5 +1,5 @@
 <?php
 
-view('notes/create.view.php', [
+require view('notes/create.view.php', [
     'errors' => []
 ]);

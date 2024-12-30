@@ -21,6 +21,6 @@ if (empty($errors)) {
     exit();
 }
 
-view('notes/create.view.php', [
+require view('notes/create.view.php', [
     'errors' => $errors
 ]);
