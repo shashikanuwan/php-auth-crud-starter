@@ -1,6 +1,7 @@
 <?php
 
 
+use Core\Session;
 use JetBrains\PhpStorm\NoReturn;
 
 #[NoReturn] function dd($value): void
@@ -21,7 +22,7 @@ function urlIs($value): bool
 {
     http_response_code($code);
 
-    require view("partials/{$code}.php");
+    require base_path("views/partials/{$code}.php");
 
     die();
 }
@@ -49,4 +50,9 @@ function view($path, array $attributes = []): void
 {
     header("location: {$path}");
     exit();
+}
+
+function old($key, $default = '')
+{
+    return Session::get('old')[$key] ?? $default;
 }

@@ -2,21 +2,42 @@
 
 namespace Http\Forms;
 
+use Core\ValidationException;
 use Core\Validator;
 
 class LoginForm
 {
     protected array $errors = [];
-    public function validate($email, $password): bool
+
+    public function __construct(public array $attributes)
     {
-        if (!Validator::email($email)) {
-            $this->errors['email'] = "Please provide a valid email address";
-        }
-        if (!Validator::string($password)) {
-            $this->errors['password'] = "Please provide a valid password";
+        if (!Validator::email($attributes['email'])) {
+            $this->errors['email'] = 'Please provide a valid email address.';
         }
 
-        return empty($this->errors);
+        if (!Validator::string($attributes['password'])) {
+            $this->errors['password'] = 'Please provide a valid password.';
+        }
+    }
+
+    public static function validate($attributes): null|static
+    {
+        $instance = new static($attributes);
+
+        return $instance->failed() ? $instance->throw() : $instance;
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function throw(): void
+    {
+        ValidationException::throw($this->errors(), $this->attributes);
+    }
+
+    public function failed(): int
+    {
+        return count($this->errors);
     }
 
     public function errors(): array
@@ -24,8 +45,10 @@ class LoginForm
         return $this->errors;
     }
 
-    public function error(string $string, string $string1): void
+    public function error($field, $message): static
     {
-        $this->errors[$string] = $string1;
+        $this->errors[$field] = $message;
+
+        return $this;
     }
 }

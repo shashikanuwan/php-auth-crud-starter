@@ -2,26 +2,21 @@
 
 namespace Core;
 
+use Exception;
+
 class Container
 {
-    protected static $bindings = [];
+    protected static array $bindings = [];
 
-    /**
-     * @param $key
-     * @param $resolver
-     * @return void
-     */
-    public static function bind($key, $resolver)
+    public static function bind($key, $resolver): void
     {
         self::$bindings[$key] = $resolver;
     }
 
     /**
-     * @param $key
-     * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function resolve($key)
+    public static function resolve($key): mixed
     {
         if (!array_key_exists($key, self::$bindings)) {
             throw new \Exception("No matching binding found for {$key}");

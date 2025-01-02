@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Middleware\Middleware;
 use Exception;
+use JetBrains\PhpStorm\NoReturn;
 
 class Router
 {
@@ -46,37 +47,40 @@ class Router
         return $this->add('PATCH', $uri, $controller);
     }
 
+    public function middleware(string $key): Router
+    {
+        $this->routes[array_key_last($this->routes)] ['middleware'] = $key;
+
+        return $this;
+    }
+
     /**
      * @throws Exception
      */
-    public function route($uri, $method): void
+    public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
-                if ($route['middleware']) {
-                    Middleware::resolve($route['middleware']);
-                }
+                Middleware::resolve($route['middleware']);
 
-                require base_path('Http/controllers/'.$route['controller']);
+                return require base_path('Http/controllers/'.$route['controller']);
             }
         }
 
         $this->abort();
     }
 
-    protected function abort($code = 404)
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
+    #[NoReturn] protected function abort($code = 404): void
     {
         http_response_code($code);
 
-        require view("partials/{$code}.php");
+        require base_path("views/partials/{$code}.php");
 
         die();
-    }
-
-    public function middleware(string $key): Router
-    {
-        $this->routes[array_key_last($this->routes)] ['middleware'] = $key;
-
-        return $this;
     }
 }

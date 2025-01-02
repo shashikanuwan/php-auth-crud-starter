@@ -11,7 +11,7 @@ ob_start();
         <div class="row mb-3">
             <div class="col">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" value="<?= $_POST['email'] ?? '' ?>">
+                <input type="email" name="email" class="form-control" value="<?= old('email') ?>">
                 <?php if (isset($errors['email'])) : ?>
                     <p class="text-danger"><?= $errors['email'] ?></p>
                 <?php endif; ?>
@@ -21,7 +21,7 @@ ob_start();
         <div class="mb-3">
             <div class="col">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" value="<?= $_POST['password'] ?? '' ?>">
+                <input type="password" name="password" class="form-control" value="">
                 <?php if (isset($errors['password'])) : ?>
                     <p class="text-danger"><?= $errors['password'] ?></p>
                 <?php endif; ?>

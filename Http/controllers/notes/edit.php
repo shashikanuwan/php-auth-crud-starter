@@ -12,7 +12,7 @@ $note = $db->query('SELECT * FROM notes WHERE id = :id', [
 
 authorize($note['user_id'] === $currentUserId);
 
-require view('notes/edit.view.php', [
+view('notes/edit.view.php', [
     'errors' => [],
     'note' => $note
 ]);
