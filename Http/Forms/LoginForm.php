@@ -23,4 +23,9 @@ class LoginForm
     {
         return $this->errors;
     }
+
+    public function error(string $string, string $string1): void
+    {
+        $this->errors[$string] = $string1;
+    }
 }
