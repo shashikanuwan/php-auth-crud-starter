@@ -2,23 +2,23 @@
 
 global $router;
 
-$router->get('/', 'controllers/welcomeController.php');
-$router->get('/about', 'controllers/AboutController.php');
-$router->get('/contact', 'controllers/ContactController.php');
+$router->get('/', 'welcomeController.php');
+$router->get('/about', 'AboutController.php');
+$router->get('/contact', 'ContactController.php');
 
-$router->get('/notes', 'controllers/notes/index.php')->middleware('auth');
-$router->get('/note', 'controllers/notes/show.php');
-$router->delete('/note', 'controllers/notes/destroy.php');
+$router->get('/notes', 'notes/index.php')->middleware('auth');
+$router->get('/note', 'notes/show.php');
+$router->delete('/note', 'notes/destroy.php');
 
-$router->get('/note/edit', 'controllers/notes/edit.php');
-$router->patch('/note', 'controllers/notes/update.php');
+$router->get('/note/edit', 'notes/edit.php');
+$router->patch('/note', 'notes/update.php');
 
-$router->get('/notes/create', 'controllers/notes/create.php');
-$router->post('/notes', 'controllers/notes/store.php');
+$router->get('/notes/create', 'notes/create.php');
+$router->post('/notes', 'notes/store.php');
 
-$router->get('/register', 'controllers/auth/register/create.php')->middleware('guest');
-$router->post('/register', 'controllers/auth/register/store.php')->middleware('guest');
+$router->get('/register', 'auth/register/create.php')->middleware('guest');
+$router->post('/register', 'auth/register/store.php')->middleware('guest');
 
-$router->get('/login', 'controllers/auth/login/login.php')->middleware('guest');
-$router->post('/login', 'controllers/auth/login/store.php')->middleware('guest');
-$router->delete('/logout', 'controllers/auth/logout/destroy.php')->middleware('auth');
+$router->get('/login', 'auth/login/login.php')->middleware('guest');
+$router->post('/login', 'auth/login/store.php')->middleware('guest');
+$router->delete('/logout', 'auth/logout/destroy.php')->middleware('auth');
