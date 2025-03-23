@@ -15,7 +15,7 @@ A simple PHP project demonstrating basic authentication and CRUD operations, str
 ### Prerequisites
 - PHP 8.3 or higher
 - MySQL
-- Composer
+- Node.js & NPM
 - Apache/Nginx server or PHP built-in server
 
 ### Setup Instructions
@@ -23,3 +23,11 @@ A simple PHP project demonstrating basic authentication and CRUD operations, str
    ```sh
    git clone git@github.com:shashikanuwan/php-auth-crud-starter.git
    cd php-auth-crud-starter
+
+2. Install dependencies:
+   ```sh
+   npm install
+
+3. Start the local development server:
+   ```sh
+   php -S localhost:8080 /public
