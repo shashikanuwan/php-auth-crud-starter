@@ -21,5 +21,5 @@ A simple PHP project demonstrating basic authentication and CRUD operations, str
 ### Setup Instructions
 1. Clone the repository:
    ```sh
-   git clone https://github.com/shashikanuwan/php-auth-crud-starter.git
+   git clone git@github.com:shashikanuwan/php-auth-crud-starter.git
    cd php-auth-crud-starter
