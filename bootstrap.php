@@ -12,10 +12,4 @@ $container->bind('Core\Database', function () {
     return new Database($config['database']);
 });
 
-try {
-    $db = $container->resolve('Core\Database');
-} catch (Exception $e) {
-    dd($e->getMessage());
-}
-
 App::setContainer($container);

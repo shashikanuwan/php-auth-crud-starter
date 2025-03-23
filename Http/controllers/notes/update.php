@@ -23,7 +23,7 @@ if (!Validator::string($_POST['name'], 1, 255)) {
 }
 
 if (count($errors)) {
-    view('notes/edit.view.php', [
+   return view('notes/edit.view.php', [
         'errors' => $errors,
         'note' => $note
     ]);

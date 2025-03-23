@@ -4,19 +4,19 @@ namespace Core;
 
 class App
 {
-    protected static $controller;
+    protected static $container;
 
-    public static function setContainer($container)
+    public static function setContainer($container): void
     {
-        static::$controller = $container;
+        static::$container = $container;
     }
 
     public static function container()
     {
-        return static::$controller;
+        return static::$container;
     }
 
-    public static function bind($key, $resolver)
+    public static function bind($key, $resolver): void
     {
         static::container()->bind($key, $resolver);
     }

@@ -2,63 +2,85 @@
 
 namespace Core;
 
+use Core\Middleware\Middleware;
+use Exception;
+use JetBrains\PhpStorm\NoReturn;
+
 class Router
 {
-    protected $routes = [];
+    protected array $routes = [];
 
-    protected function add($method, $uri, $controller)
+    protected function add($method, $uri, $controller): Router
     {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
-            'method' => $method
+            'method' => $method,
+            'middleware' => null
         ];
 
+        return $this;
     }
 
-    public function get($uri, $controller)
+    public function get($uri, $controller): Router
     {
-        $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controller);
     }
 
-    public function post($uri, $controller)
+    public function post($uri, $controller): Router
     {
-        $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controller);
     }
 
-    public function put($uri, $controller)
+    public function put($uri, $controller): Router
     {
-        $this->add('PUT', $uri, $controller);
+        return $this->add('PUT', $uri, $controller);
     }
 
-    public function delete($uri, $controller)
+    public function delete($uri, $controller): Router
     {
-        $this->add('DELETE', $uri, $controller);
+        return $this->add('DELETE', $uri, $controller);
     }
 
-    public function patch($uri, $controller)
+    public function patch($uri, $controller): Router
     {
-        $this->add('PATCH', $uri, $controller);
+        return $this->add('PATCH', $uri, $controller);
     }
 
+    public function middleware(string $key): Router
+    {
+        $this->routes[array_key_last($this->routes)] ['middleware'] = $key;
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
-                require base_path($route['controller']);
+                Middleware::resolve($route['middleware']);
+
+                return require base_path('Http/controllers/'.$route['controller']);
             }
         }
 
         $this->abort();
     }
 
-    protected function abort($code = 404)
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
+    #[NoReturn] protected function abort($code = 404): void
     {
         http_response_code($code);
 
-        require view("partials/{$code}.php");
+        require base_path("views/partials/{$code}.php");
 
         die();
     }
-
 }
